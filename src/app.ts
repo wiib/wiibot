@@ -2,7 +2,7 @@ import "./lib/setup";
 import { Client, GatewayIntentBits } from "discord.js";
 
 // Initialize client
-const client = new Client({ intents: [ GatewayIntentBits.Guilds ] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 // When ready, log that shit
 client.once("ready", () => {
@@ -10,5 +10,6 @@ client.once("ready", () => {
 });
 
 // Login
-client.login(process.env.DISCORD_TOKEN)
-      .then(() => { console.log("Logged in!") });
+client.login(process.env.DISCORD_TOKEN).then(() => {
+    console.log("Successfully logged in!");
+});

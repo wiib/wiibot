@@ -1,6 +1,13 @@
 import { Command } from "../common/types";
+import { msToHMS } from "../common/utils";
 import { colors, embedFooter } from "../common/constants";
-import {CommandInteraction, EmbedBuilder, hyperlink, OAuth2Scopes, SlashCommandBuilder} from "discord.js";
+import {
+    CommandInteraction,
+    EmbedBuilder,
+    hyperlink,
+    OAuth2Scopes,
+    SlashCommandBuilder,
+} from "discord.js";
 
 export default class BotInfo implements Command {
     data = new SlashCommandBuilder()
@@ -10,7 +17,7 @@ export default class BotInfo implements Command {
     async execute(interaction: CommandInteraction) {
         const inviteLink = interaction.client.generateInvite({
             scopes: [OAuth2Scopes.ApplicationsCommands, OAuth2Scopes.Bot],
-        })
+        });
 
         const e = new EmbedBuilder()
             .setColor(`#${colors.main}`)
@@ -20,7 +27,7 @@ export default class BotInfo implements Command {
                 {
                     name: "Uptime",
                     inline: true,
-                    value: `${interaction.client.uptime}`,
+                    value: `${msToHMS(interaction.client.uptime ?? 0)}`,
                 },
                 {
                     name: "Total Guilds",

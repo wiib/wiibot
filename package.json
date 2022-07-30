@@ -7,10 +7,9 @@
     "build": "tsc",
     "watch": "tsc -w",
     "start": "node build/app.js",
-    "start:deploy": "node build/deployCommands.js",
-    "watch:start": "tsc-watch --onSuccess \"node build/index.js\"",
-    "dev": "run-s build start",
-    "dev:deploy": "run-s build start:deploy"
+    "deploy-commands": "node build/deployCommands.js",
+    "dev": "run-s build deploy-commands start",
+    "watch:start": "tsc-watch --onSuccess \"node build/index.js\""
   },
   "keywords": [
     "discord",

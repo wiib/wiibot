@@ -4,12 +4,14 @@
   "description": "",
   "main": "build/app.js",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
+    "prebuild": "rimraf build",
+    "build": "npm run prebuild && tsc",
     "start": "node build/app.js",
-    "deploy-commands": "node build/deployCommands.js",
-    "dev": "run-s build deploy-commands start",
-    "watch:start": "tsc-watch --onSuccess \"node build/index.js\""
+    "watch:start": "tsc-watch --onSuccess \"node build/index.js\"",
+    "dev": "run-s build start",
+    "commands:deploy": "node build/deployCommands.js",
+    "commands:clear": "node build/clearCommands.js",
+    "commands:reload": "run-s build commands:clear commands:deploy"
   },
   "keywords": [
     "discord",
@@ -27,6 +29,7 @@
     "eslint-config-prettier": "^8.5.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
     "tsc-watch": "^5.0.3",
     "typescript": "^4.7.4"
   },

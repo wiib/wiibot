@@ -12,4 +12,4 @@ export const embedFooter = `v${packageVer} - Commit #${revHash}`;
 // Embed colors
 export const colors = {
     main: "e95858"
-}
+};

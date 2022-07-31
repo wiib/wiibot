@@ -1,7 +1,7 @@
 import "./lib/setup";
 import { join } from "node:path";
 import { Client, Collection, GatewayIntentBits } from "discord.js";
-import {readdirSyncRecursive} from "./common/utils";
+import { readdirSyncRecursive } from "./common/utils";
 import type { Command } from "./common/types";
 
 // Initialize client
@@ -37,7 +37,7 @@ client.on("interactionCreate", async (interaction) => {
         console.error(err);
         await interaction.reply({
             content: "There was an error while executing that command...",
-            ephemeral: true,
+            ephemeral: true
         });
     }
 });

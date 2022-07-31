@@ -1,6 +1,6 @@
-import { Command } from "../common/types";
-import { msToHMS } from "../common/utils";
-import { colors, embedFooter } from "../common/constants";
+import { Command } from "../../common/types";
+import { msToHMS } from "../../common/utils";
+import { colors, embedFooter } from "../../common/constants";
 import {
     CommandInteraction,
     EmbedBuilder,
@@ -9,7 +9,7 @@ import {
     SlashCommandBuilder,
 } from "discord.js";
 
-export default class BotInfo implements Command {
+export default class Info implements Command {
     data = new SlashCommandBuilder()
         .setName("info")
         .setDescription("Displays useful information about the bot");

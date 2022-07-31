@@ -12,7 +12,7 @@ import {
 export default class Info implements Command {
     data = new SlashCommandBuilder()
         .setName("info")
-        .setDescription("Displays useful information about the bot");
+        .setDescription("Display useful information about the bot");
 
     async execute(interaction: CommandInteraction) {
         const inviteLink = interaction.client.generateInvite({

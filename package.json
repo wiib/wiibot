@@ -11,7 +11,7 @@
     "dev": "run-s build start",
     "commands:deploy": "node build/deployCommands.js",
     "commands:clear": "node build/clearCommands.js",
-    "commands:reload": "run-s build commands:clear commands:deploy"
+    "commands:reload": "run-s commands:clear commands:deploy"
   },
   "keywords": [
     "discord",

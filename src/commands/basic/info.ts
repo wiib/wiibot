@@ -14,7 +14,7 @@ import type { ChatInputCommandInteraction, GuildMember } from "discord.js";
 export default class Info implements Command {
     data = new SlashCommandBuilder()
         .setName("info")
-        .setDescription("Display useful information about the bot")
+        .setDescription("Displays different types of information")
         .addSubcommand((subcommand) =>
             subcommand
                 .setName("user")

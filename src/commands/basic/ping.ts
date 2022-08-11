@@ -6,7 +6,7 @@ import type { ChatInputCommandInteraction } from "discord.js";
 export default class PingCommand implements Command {
     public data = new SlashCommandBuilder()
         .setName("ping")
-        .setDescription("Ping the bot to see if it is alive.");
+        .setDescription("Pings the bot to see if it is alive");
 
     public async execute(interaction: ChatInputCommandInteraction) {
         const reply = await interaction.reply({ content: "Pinging...", fetchReply: true });

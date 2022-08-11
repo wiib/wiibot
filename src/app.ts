@@ -16,7 +16,7 @@ const commandFiles = readdirSyncRecursive(commandsPath).filter((file) => file.en
 for (const file of commandFiles) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const f = require(file);
-    const command: Command = new f.default();
+    const command: Command = new f.default() as Command;
     commands.set(command.data.name, command);
 }
 

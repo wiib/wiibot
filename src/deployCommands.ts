@@ -3,6 +3,7 @@ import { readdirSyncRecursive } from "./common/utils";
 import { join } from "node:path";
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord.js";
+import type { Command } from "./common/types";
 
 // Read commands from dir
 const commands: unknown[] = [];
@@ -13,7 +14,8 @@ const commandFiles = readdirSyncRecursive(commandsPath).filter((file) => file.en
 for (const file of commandFiles) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const f = require(file);
-    const command = new f.default();
+    const command = new f.default() as Command;
+    console.log(command.data);
     commands.push(command.data.toJSON());
 }
 

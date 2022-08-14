@@ -1,14 +1,7 @@
 import { Command } from "../../common/types";
 import { msToHMS } from "../../common/utils";
-import { colors, embedFooter } from "../../common/constants";
-import {
-    EmbedBuilder,
-    OAuth2Scopes,
-    SlashCommandBuilder,
-    hyperlink,
-    time,
-    userMention
-} from "discord.js";
+import { DefaultEmbed } from "../../common/classes";
+import { OAuth2Scopes, SlashCommandBuilder, hyperlink, time, userMention } from "discord.js";
 import type { ChatInputCommandInteraction, GuildMember } from "discord.js";
 
 export default class Info implements Command {
@@ -29,6 +22,7 @@ export default class Info implements Command {
 
     async execute(interaction: ChatInputCommandInteraction) {
         const subcommand = interaction.options.getSubcommand();
+        const e = new DefaultEmbed();
 
         if (subcommand === "user") {
             const member = interaction.options.getMember("target") as GuildMember;
@@ -37,9 +31,7 @@ export default class Info implements Command {
             const avatar = member.user.avatarURL({ size: 4096, extension: "png" });
             const banner = fUser.bannerURL({ size: 4096, extension: "png" });
 
-            const e = new EmbedBuilder()
-                .setColor(`#${colors.main}`)
-                .setTitle("User Info")
+            e.setTitle("User Info")
                 .setThumbnail(avatar)
                 .setAuthor({
                     name: member.user.tag,
@@ -62,8 +54,7 @@ export default class Info implements Command {
                         inline: false,
                         value: `${member.id}`
                     }
-                ])
-                .setFooter({ text: embedFooter });
+                ]);
 
             if (avatar) {
                 e.addFields([
@@ -99,9 +90,7 @@ export default class Info implements Command {
                 scopes: [OAuth2Scopes.ApplicationsCommands, OAuth2Scopes.Bot]
             });
 
-            const e = new EmbedBuilder()
-                .setColor(`#${colors.main}`)
-                .setTitle("Bot Info")
+            e.setTitle("Bot Info")
                 .setThumbnail(interaction.client.user?.avatarURL() ?? null)
                 .addFields([
                     {
@@ -119,8 +108,7 @@ export default class Info implements Command {
                         inline: false,
                         value: `${hyperlink("Click here!", inviteLink)}`
                     }
-                ])
-                .setFooter({ text: embedFooter });
+                ]);
 
             await interaction.reply({ embeds: [e] });
             return;

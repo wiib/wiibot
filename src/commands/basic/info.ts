@@ -32,7 +32,10 @@ export default class Info implements Command {
 
         if (subcommand === "user") {
             const member = interaction.options.getMember("target") as GuildMember;
+            const fUser = await member.user.fetch(true);
+
             const avatar = member.user.avatarURL({ size: 4096, extension: "png" });
+            const banner = fUser.bannerURL({ size: 4096, extension: "png" });
 
             const e = new EmbedBuilder()
                 .setColor(`#${colors.main}`)
@@ -70,6 +73,21 @@ export default class Info implements Command {
                         value: `${hyperlink("Click here!", avatar)}`
                     }
                 ]);
+            }
+
+            if (banner) {
+                e.addFields([
+                    {
+                        name: "Banner URL",
+                        inline: true,
+                        value: `${hyperlink("Click here!", banner)}`
+                    },
+                    {
+                        name: "Accent Color",
+                        inline: true,
+                        value: `${fUser.hexAccentColor}`
+                    }
+                ]).setImage(banner);
             }
 
             await interaction.reply({ embeds: [e] });

@@ -38,6 +38,8 @@
     "discord-api-types": "^0.36.3",
     "discord.js": "^14.0.3",
     "dotenv": "^16.0.1",
+    "fnapicom": "^1.0.3",
+    "fuse.js": "^6.6.2",
     "ts-dedent": "^2.2.0"
   }
 }
